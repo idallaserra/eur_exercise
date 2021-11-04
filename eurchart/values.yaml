@@ -80,8 +80,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-db:
-  host: "192.168.2.144"
-  port: "3306"
-  user: "root"
