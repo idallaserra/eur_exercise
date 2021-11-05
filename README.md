@@ -156,7 +156,7 @@ Finally you can check the app is working opening a browser to http://balancer_ip
 This is only a demo version far for being production ready. 
 The following improvements can in fact be considered:
 
-- all the code can be impoved (description, more variabvles etc);
+- all the app code can be improved (adding CSS etc, description, more variables etc);
 - the app is using ubuntu as base image, other hardened image con be used for reducing the security vulnerabilities;
 - https in place of http with a valid FQDN domain (ingress controller with let's encrypt or cloud provider solution);
 - a Cloud Armor for DDOS and WAF protecting the load balancer;
