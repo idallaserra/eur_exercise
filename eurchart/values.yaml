@@ -80,3 +80,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# Database user, the password is retrieved directly form the secret
+db:
+  user: root
