@@ -1,14 +1,14 @@
 provider "google" {
-  project = "hass-15937"
-  region  = "europe-west1"
-  zone    = "europe-west1-c"
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
 }
 data "google_client_config" "provider" {}
 
 resource "google_compute_subnetwork" "custom" {
   name          = "test-subnetwork"
   ip_cidr_range = "10.2.0.0/16"
-  region        = "europe-west1"
+  region        = var.region
   network       = google_compute_network.custom.id
   secondary_ip_range {
     range_name    = "services-range"
@@ -27,7 +27,7 @@ resource "google_compute_network" "custom" {
 
 resource "google_container_cluster" "my_vpc_native_cluster" {
   name               = "my-vpc-native-cluster"
-  location           = "europe-west1"
+  location           = var.region
   initial_node_count = 1
   
   network    = google_compute_network.custom.id
@@ -37,8 +37,6 @@ resource "google_container_cluster" "my_vpc_native_cluster" {
     cluster_secondary_range_name  = "services-range"
     services_secondary_range_name = google_compute_subnetwork.custom.secondary_ip_range.1.range_name
   }
-
-  # other settings...
 }
 
 provider "kubernetes" {
@@ -65,4 +63,9 @@ resource "helm_release" "my-chart" {
   values = ["${file("../eurchart/values.yaml")}"]
 }
 
+data "kubernetes_service" "my-chart-eurchart" {
+  metadata {
+    name = "my-chart-eurchart"
+  }
+}
 

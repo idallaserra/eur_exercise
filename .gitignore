@@ -176,5 +176,3 @@ cython_debug/
 # Pdf Question File
 *.pdf
 
-# All Readme File
-*.md
